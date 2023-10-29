@@ -210,5 +210,5 @@ programs.hyprland = {
   };
 
     # Do not touch
-    system.stateVersion = "20.09";
+    system.stateVersion = "23.05";
 }
