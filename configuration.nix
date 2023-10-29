@@ -145,17 +145,17 @@ services.blueman.enable = true;
 
     # Set environment variables
     environment.variables = {
-        NIXOS_CONFIG = "$HOME/.config/nixos/configuration.nix";
-        NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
+        #NIXOS_CONFIG = "$HOME/.config/nixos/configuration.nix";
+        #NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
         XDG_DATA_HOME = "$HOME/.local/share";
-        PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
+        #PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
         GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
         GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
         MOZ_ENABLE_WAYLAND = "1";
-        ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
+        #ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
         EDITOR = "nvim";
         DIRENV_LOG_FORMAT = "";
-        ANKI_WAYLAND = "1";
+        #ANKI_WAYLAND = "1";
         DISABLE_QT5_COMPAT = "0";
     };
 
