@@ -7,38 +7,31 @@
 services.xserver.enable = true;
 services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = false;
-    programs.zsh.enable = true;
+    programs.fish.enable = true;
 
     # Laptop-specific packages (the other ones are installed in `packages.nix`)
     environment.systemPackages = with pkgs; [
-        acpi tlp git
-alacritty
-starship
-neovim
-rofi-wayland
-dunst
-nitrogen
-lxappearance
-libsForQt5.breeze-qt5
-libsForQt5.breeze-gtk
-libsForQt5.dolphin
-exa
-xfce.tumbler
-cliphist
-python311Packages.python-pipedrive
-pavucontrol
+        git
+python2
+rustup
+kitty
+fish
+wofi-emoji
+ swayidle swaylock-effects grim slurp mako wl-clipboard chayang cliphist nwg-look swappy wofi material-design-icons iosevka xdg-user-dirs noto-fonts-emoji libsForQt5.polkit-kde-agent clipman imagemagick hyprpicker gpick acpi libsForQt5.qt5ct spotify brightnessctl pamixer papirus-icon-theme
+thunar 
+ cava spicetify-cli
 neofetch
-cmatrix
-btop
+
+
 networkmanager
 networkmanagerapplet
-firewalld-gui
-firewalld
+
+
 blueman
 bluez
 waybar
 bibata-cursors
-kora-icon-theme
+
 swww
 wlogout
 pfetch
@@ -47,9 +40,9 @@ pfetch
     # Install fonts
     fonts = {
         fonts = with pkgs; [
-            ttf-font-awesome
+             iosevka
             JetBrainsMono
-            ttf-fira-sans
+            noto-fonts-emoji
             openmoji-color
             ttf-firacode-nerd
             ttf-fira-code
@@ -73,7 +66,7 @@ services.blueman.enable = true;
                 xdg-desktop-portal-wlr
                 xdg-desktop-portal-gtk
             ];
-            gtkUsePortal = true;
+           # gtkUsePortal = true;
         };
     };
 
@@ -95,7 +88,7 @@ services.blueman.enable = true;
 
     # Boot settings: clean /tmp/, latest kernel and enable bootloader
     boot = {
-        cleanTmpDir = true;
+        
         loader = {
         systemd-boot.enable = true;
         systemd-boot.editor = true;
@@ -116,12 +109,13 @@ services.blueman.enable = true;
     users.users.notus = {
         isNormalUser = true;
         extraGroups = [ "input" "wheel" ];
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
     };
       users.users.pwn = {
     isNormalUser = true;
+initialPassword = "pwn1";
     description = "pwn";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "input"];
  
     packages = with pkgs; [
@@ -147,16 +141,16 @@ services.blueman.enable = true;
     environment.variables = {
         #NIXOS_CONFIG = "$HOME/.config/nixos/configuration.nix";
         #NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
-        XDG_DATA_HOME = "$HOME/.local/share";
+        #XDG_DATA_HOME = "$HOME/.local/share";
         #PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
-        GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
-        GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
-        MOZ_ENABLE_WAYLAND = "1";
+       # GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
+        #GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
+        #MOZ_ENABLE_WAYLAND = "1";
         #ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
-        EDITOR = "nvim";
-        DIRENV_LOG_FORMAT = "";
+       # EDITOR = "nvim";
+       # DIRENV_LOG_FORMAT = "";
         #ANKI_WAYLAND = "1";
-        DISABLE_QT5_COMPAT = "0";
+       # DISABLE_QT5_COMPAT = "0";
     };
 
     # Security 
@@ -208,6 +202,9 @@ programs.hyprland = {
     # Whether to enable patching wlroots for better Nvidia support
    # enableNvidiaPatches = true;
   };
+imports = [
+./hardware-configuration.nix
+];
 
     # Do not touch
     system.stateVersion = "23.05";
