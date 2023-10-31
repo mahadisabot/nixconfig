@@ -52,7 +52,7 @@ pfetch
         fontconfig = {
             hinting.autohint = true;
             defaultFonts = {
-              emoji = [ "OpenMoji Color" ];
+              emoji = [ "noto-fonts-emojir" ];
             };
         };
     };
