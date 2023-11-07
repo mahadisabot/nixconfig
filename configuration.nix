@@ -7,17 +7,99 @@
 services.xserver.enable = true;
 services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = false;
-    programs.fish.enable = true;
+    #programs.fish.enable = true;
+  services.xserver.enable = true;
+  services.xserver.layout = "us";
+  services.xserver.videoDrivers = [ "amdgpu" ]; # or appropriate video driver
+  services.xserver.desktopManager.waylandSession.enable = true;
 
+
+
+  services.swaybg.enable = true;
+  services.swaybg.package = pkgs.swaybg;
+
+  services.swaylock.enable = true;
+  services.swaylock.package = pkgs.swaylock-effects;
+
+  services.swayidle.enable = true;
+  services.swayidle.package = pkgs.swayidle;
+
+  services.grim.enable = true;
+  services.grim.package = pkgs.grim;
+
+  services.slurp.enable = true;
+  services.slurp.package = pkgs.slurp;
+
+  services.wl-clipboard.enable = true;
+  services.wl-clipboard.package = pkgs.wl-clipboard;
+
+  services.dunst.enable = true;
+  services.dunst.package = pkgs.dunst;
+
+  services.xdg-user-dirs.enable = true;
+  services.xdg-user-dirs.package = pkgs.xdg-user-dirs;
+
+  services.rofi.enable = true;
+  services.rofi.package = pkgs.rofi-wayland;
+
+  services.viewnior.enable = true;
+  services.viewnior.package = pkgs.viewnior;
+
+  services.eww.enable = true;
+  services.eww.package = pkgs.eww-wayland;
+
+  services.foot.enable = true;
+  services.foot.package = pkgs.foot;
+
+  services.nerd-fonts.enable = true;
+  services.nerd-fonts.fonts = [ pkgs.jetbrainsMono ];
+
+  services.zsh.enable = true;
+  services.zsh.promptInit = lib.mkIf config.users.users.pwn.isCurrent true;
+
+  services.starship.enable = true;
+  services.starship.package = pkgs.starship;
+
+  services.thunar.enable = true;
+  services.thunar.package = pkgs.thunar;
+  
+  services.thunar.volumeManager.enable = true;
+  services.thunar.archivePlugin.enable = true;
+  services.gvfs.enable = true;
+
+  services.file-roller.enable = true;
+  services.file-roller.package = pkgs.gnome.file-roller;
+
+  services.gsettings-desktop-schemas.enable = true;
+  services.lxappearance.enable = true;
+  services.lxappearance.package = pkgs.lxappearance;
+
+  services.kripton.enable = true;
+  services.kripton.package = pkgs.kripton;
+
+  #services.cursors.theme = "Qogir-cursors";
+
+  services.playerctl.enable = true;
+  services.playerctl.package = pkgs.playerctl;
+
+  services.networkmanager.enable = true;
+  services.polkit.enable = true;
+  services.dbus.enable = true;
+
+  services.brightnessctl.enable = true;
+  services.brightnessctl.package = pkgs.brightnessctl;
+
+  services.helix.enable = true;
+  services.helix.package = pkgs.helix;
     # Laptop-specific packages (the other ones are installed in `packages.nix`)
     environment.systemPackages = with pkgs; [
         git
 python2
 rustup
 kitty
-fish
-wofi-emoji
- swayidle swaylock-effects grim slurp mako wl-clipboard chayang cliphist nwg-look swappy wofi material-design-icons iosevka xdg-user-dirs noto-fonts-emoji libsForQt5.polkit-kde-agent clipman imagemagick hyprpicker gpick acpi libsForQt5.qt5ct spotify brightnessctl pamixer papirus-icon-theme
+
+
+ swayidle swaylock-effects grim slurp mako wl-clipboard chayang cliphist nwg-look swappy material-design-icons iosevka xdg-user-dirs noto-fonts-emoji libsForQt5.polkit-kde-agent clipman imagemagick hyprpicker gpick acpi libsForQt5.qt5ct spotify brightnessctl pamixer papirus-icon-theme
 thunar 
  cava spicetify-cli
 neofetch
@@ -41,12 +123,12 @@ pfetch
     fonts = {
         fonts = with pkgs; [
              iosevka
-            JetBrainsMono
+            jetbrains-mono
             noto-fonts-emoji
             openmoji-color
             ttf-firacode-nerd
             ttf-fira-code
-            #(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+            (nerdfonts.override { fonts = [ "jetbrains-mono" ]; })
         ];
 
         fontconfig = {
@@ -109,14 +191,14 @@ services.blueman.enable = true;
     users.users.notus = {
         isNormalUser = true;
         extraGroups = [ "input" "wheel" ];
-        shell = pkgs.fish;
+        shell = pkgs.zsh;
     };
       users.users.pwn = {
     isNormalUser = true;
 initialPassword = "pwn1";
     description = "pwn";
-    shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "input"];
+    shell = pkgs.zsh;
+    extraGroups = [ "networkmanager" "wheel" "input" "video"];
  
     packages = with pkgs; [
      
