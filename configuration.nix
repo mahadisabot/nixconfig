@@ -19,14 +19,14 @@ services.xserver.displayManager.sddm.enable = true;
     environment.systemPackages = with pkgs; [
 git nano
 waybar-hyprland
-    networkmanager-applet
+    networkmanagerapplet
     blueman
-    python38Packages.python
+    python39
     rustup
     kitty
     fish
    
-    xdg-desktop-portal
+    
     swayidle
     swaylock-effects
     grim
@@ -44,14 +44,14 @@ waybar-hyprland
     material-design-icons
     iosevka
     xdg-user-dirs
-    noto-emoji
-    polkit-kde-agent
-    xfce.clipman-plugin
+    noto-fonts-emoji
+    libsForQt5.polkit-kde-agent
+    clipman
     imagemagick
     hyprpicker
     gpick
     acpi
-    qt5ct
+    libsForQt5.qt5ct
     
   
  
@@ -60,11 +60,8 @@ waybar-hyprland
     brightnessctl
     pamixer
     papirus-icon-theme
-    jetbrains-mono
-    pipewire
-    pipewire-jack
-    pipewire-alsa
-    pipewire-pulse
+    
+
     xfce.thunar
     
     cava
@@ -143,7 +140,7 @@ services.blueman.enable = true;
     users.users.notus = {
         isNormalUser = true;
         extraGroups = [ "input" "wheel" ];
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
     };
       users.users.pwn = {
     isNormalUser = true;
@@ -216,6 +213,7 @@ initialPassword = "pwn1";
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
+        jack.enable = true;
     };
     
     # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
