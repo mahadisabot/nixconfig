@@ -19,6 +19,7 @@ services.xserver.displayManager.sddm.enable = true;
     environment.systemPackages = with pkgs; [
 git nano
 waybar-hyprland
+networkmanager
     networkmanagerapplet
     blueman
     python39
@@ -224,6 +225,7 @@ initialPassword = "pwn1";
             driSupport = true;
         };
     };
+networking.networkmanager.enable = true;
 programs.hyprland = {
     # Install the packages from nixpkgs
     enable = true;
